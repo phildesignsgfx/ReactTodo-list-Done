@@ -14,15 +14,14 @@ function App() {
 		const json = localStorage.getItem("todos");
 		const loadedTodos = JSON.parse(json);
 		if (loadedTodos) {
-		  setTodos(loadedTodos);
+			setTodos(loadedTodos);
 		}
-	  }, []);
-
+	}, []);
 
 	React.useEffect(() => {
 		const json = JSON.stringify(todos);
 		localStorage.setItem("todos", json);
-	  }, [todos]);
+	}, [todos]);
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -87,17 +86,22 @@ function App() {
 					)}
 
 					<button onClick={() => deleteTodo(todo.id)}>Delete</button>
-					
+
 					<input
 						type="checkbox"
 						onChange={() => toggleComplete(todo.id)}
 						checked={todo.completed}
 					/>
-					
-					{todoEditing === todo.id ? (<button onClick={() => editTodo(todo.id)}>Submit Edits</button>) : (<button onClick={() => setTodoEditing(todo.id)}>
-						Edit Todo
-					</button>) }
-					
+
+					{todoEditing === todo.id ? (
+						<button onClick={() => editTodo(todo.id)}>
+							Submit Edits
+						</button>
+					) : (
+						<button onClick={() => setTodoEditing(todo.id)}>
+							Edit Todo
+						</button>
+					)}
 				</div>
 			))}
 		</div>
